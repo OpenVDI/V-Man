@@ -49,3 +49,7 @@ group :test do
   gem 'capybara'
   gem 'rb-inotify', '~> 0.9', :require => false
 end
+
+# user authentication
+gem 'devise'
+
