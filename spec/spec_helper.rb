@@ -15,6 +15,9 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
+    # include routes helper, so we can make use of named routes in tests
+    config.include Rails.application.routes.url_helpers
+
     # include warden helpers to be able to simulate logged-in user with less effort
     config.include Warden::Test::Helpers, :type => :feature
 
