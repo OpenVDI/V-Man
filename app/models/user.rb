@@ -8,4 +8,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
+  serialize :roles, Array
+
+  def role_symbols
+    @role_symbols ||= (roles || []).map { |r| r.to_sym }
+  end
+
 end

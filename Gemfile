@@ -53,3 +53,6 @@ end
 # user authentication
 gem 'devise'
 
+# user authorization
+gem 'declarative_authorization'
+

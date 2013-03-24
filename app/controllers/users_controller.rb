@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user!
+  filter_access_to :all
 
   # GET /users
   def index
