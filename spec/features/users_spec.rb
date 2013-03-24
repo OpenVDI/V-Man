@@ -45,7 +45,7 @@ describe "user management" do
       user # make sure user is saved before admin
       login_as(admin)
       visit users_path
-      click_link 'Edit'
+      find("a[href=\"#{edit_user_path(user)}\"]").click
       fill_in "Email", with: "new-user@example.com"
       click_button "Update User"
       user.reload
@@ -56,7 +56,7 @@ describe "user management" do
       user # make sure user is saved before admin
       login_as(admin)
       visit users_path
-      expect { click_link "Destroy" }.to change(User, :count).by(-1)
+      expect { first("a[href=\"#{user_path(user)}\"][data-method=\"delete\"]").click }.to change(User, :count).by(-1)
     end
 
     after(:each) do
