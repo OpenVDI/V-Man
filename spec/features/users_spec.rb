@@ -17,7 +17,7 @@ describe "user management" do
     it "shouldn't be able to access users" do
       login_as user
       visit users_path
-      page.current_url.should be == new_user_session_url
+      page.status_code.should be == 403
     end
 
     after(:each) do
