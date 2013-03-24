@@ -16,6 +16,14 @@
 
     <div class="row">
       <% flash.each do |type, msg| %>
+        <% type = case type
+        when :alert
+          :block
+        when :notice
+          :success
+        else
+          type
+        end %>
         <div id="flash_<%= type %>" class="alert alert-<%= type %>"><%= msg %></div>
       <% end %>
     </div>
