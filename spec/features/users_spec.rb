@@ -14,8 +14,24 @@ describe "user management" do
   describe "user" do
     let(:user) { FactoryGirl.create(:user) }
 
+    it "shouldn't be able to access users" do
+      login_as user
+      visit users_path
+      page.current_url.should be == new_user_session_url
+    end
+
+    after(:each) do
+      user.destroy
+    end
+
+  end
+
+  describe "admin" do
+    let(:admin) { FactoryGirl.create(:admin) }
+    let(:user) { FactoryGirl.create(:user) }
+
     it "should be able to create new user" do
-      login_as(user)
+      login_as(admin)
       visit users_path
       click_link 'New User'
       fill_in "Email", with: "new-user@example.com"
@@ -26,7 +42,8 @@ describe "user management" do
     end
 
     it "should be able to edit user" do
-      login_as(user)
+      user # make sure user is saved before admin
+      login_as(admin)
       visit users_path
       click_link 'Edit'
       fill_in "Email", with: "new-user@example.com"
@@ -36,13 +53,15 @@ describe "user management" do
     end
 
     it "should be able to destroy user" do
-      login_as(user)
+      user # make sure user is saved before admin
+      login_as(admin)
       visit users_path
       expect { click_link "Destroy" }.to change(User, :count).by(-1)
     end
 
     after(:each) do
       user.destroy
+      admin.destroy
     end
 
   end
