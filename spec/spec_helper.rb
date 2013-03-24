@@ -15,6 +15,9 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
+    # include warden helpers to be able to simulate logged-in user with less effort
+    config.include Warden::Test::Helpers, :type => :feature
+
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -33,6 +36,14 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
+
+    config.before :all, :type => :feature do
+      Warden.test_mode!
+    end
+
+    config.after :each, :type => :feature do
+      Warden.test_reset!
+    end
 
   end
 
