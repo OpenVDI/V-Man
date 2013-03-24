@@ -6,7 +6,7 @@ describe "user management" do
 
     it "shouldn't be able to access users" do
       visit users_path
-      page.current_url.should be == new_user_session_url
+      page.current_url.should match(new_user_session_url)
     end
 
   end
