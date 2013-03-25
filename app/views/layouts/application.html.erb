@@ -18,6 +18,9 @@
         <%= link_to 'OpenVDI', root_path, class: 'brand' %>
         <div class="nav-collapse">
           <ul class="nav">
+            <% permitted_to? :manage, :users do %>
+            <li><%= link_to "User Management", users_path %></li>
+            <% end %>
           </ul>
         </div>
       </div>
