@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
       render "global/403"
     else
       flash[:error] = I18n.t("devise.failure.unauthenticated")
-      redirect_to new_user_session_path({ :return_to => request.fullpath })
+      session[:user_return_to] = request.fullpath
+      redirect_to new_user_session_path()
     end
   end
 
