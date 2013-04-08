@@ -36,6 +36,10 @@
 
   <div class="container">
 
+    <% if content_for? :title %>
+      <h1><%= content_for :title %></h1>
+    <% end %>
+
     <div class="row">
       <% flash.each do |type, msg| %>
         <% type = case type
