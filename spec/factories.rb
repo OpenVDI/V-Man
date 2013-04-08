@@ -14,5 +14,13 @@ FactoryGirl.define do
     f.roles ['admin']
   end
 
+  factory :template do |f|
+    f.name 'image of foo distro'
+    f.description 'description of foo'
+    f.format 'qcow2'
+    after(:create) do |template, evaluator|
+      FileUtils.cp(Rails.root.join('images', 'test.qcow2'), Rails.root.join('images', "#{template.id}.qcow2"))
+    end
+  end
 
 end
