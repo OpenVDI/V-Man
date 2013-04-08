@@ -13,4 +13,16 @@ describe Template do
 
   end
 
+  context "callbacks" do
+    let(:template) { FactoryGirl.create(:template) }
+
+    it "should remove image file after destroying template" do
+      template
+      File.exists?(template.image_path).should be == true
+      template.destroy
+      File.exists?(template.image_path).should be == false
+    end
+
+  end
+
 end
