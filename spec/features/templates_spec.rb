@@ -38,6 +38,9 @@ describe "template management" do
       fill_in 'Description', with: 'this is going to be my visionary archlinux template'
       attach_file 'Image', Rails.root.join('images', 'test.qcow2')
       expect { click_button 'Create Template' }.to change(Template, :count).by(1)
+      _template = Template.last
+      File.exists?(_template.image_path).should be == true
+      _template.destroy
     end
 
     it "should be able to destroy template" do
