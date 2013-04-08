@@ -42,6 +42,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'rspec-rails', :group => [ :development, :test ]
 
 group :test do
+  gem 'fuubar'
   gem 'factory_girl_rails'
   gem 'spork'
   gem 'guard-rspec'
