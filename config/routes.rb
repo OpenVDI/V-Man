@@ -2,6 +2,7 @@ VMan::Application.routes.draw do
   devise_for :users, path: '/'
 
   resources :users
+  resources :templates
 
   root :to => 'home#index'
 
