@@ -18,9 +18,7 @@ FactoryGirl.define do
     f.name 'image of foo distro'
     f.description 'description of foo'
     f.format 'qcow2'
-    after(:create) do |template, evaluator|
-      FileUtils.cp(Rails.root.join('images', 'test.qcow2'), Rails.root.join('images', "#{template.id}.qcow2"))
-    end
+    f.image Rails.root.join('images', 'test.qcow2').to_s
   end
 
 end
