@@ -61,6 +61,7 @@ describe "template management" do
 
     after(:each) do
       admin.destroy
+      template.destroy
     end
 
   end
