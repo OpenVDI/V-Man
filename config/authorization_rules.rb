@@ -8,8 +8,7 @@ authorization do
     end
 
     role :admin do
-      includes :user
-      has_permission_on :users, :to => [:manage]
+      has_omnipotence
     end
 
 end
