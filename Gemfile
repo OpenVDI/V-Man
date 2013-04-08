@@ -57,3 +57,5 @@ gem 'devise'
 # user authorization
 gem 'declarative_authorization'
 
+# mime-type checking (requires libmagic-dev)
+gem 'ruby-filemagic'
