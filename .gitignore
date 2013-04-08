@@ -20,3 +20,6 @@
 # ignore vim swap files
 *swp
 *swo
+
+# ignore images
+images/*
