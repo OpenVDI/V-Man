@@ -44,7 +44,7 @@ describe "template management" do
       login_as admin
       template
       visit templates_path
-      expect { find(:css, "a[href='#{template_path(template)}'][data-method='delete']") }.to change(Template, :count).by(1)
+      expect { find(:css, "a[href='#{template_path(template)}'][data-method='delete']").click }.to change(Template, :count).by(-1)
     end
 
     it "should be able to edit template" do
