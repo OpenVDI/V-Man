@@ -5,6 +5,7 @@ namespace :bootstrap do
     u = User.new
     u.email = "openvdi@github.com"
     u.password = 'openvdi@github.com'
+    u.roles = ['admin']
     u.save!
   end
 
