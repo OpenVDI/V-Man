@@ -13,15 +13,28 @@ describe "template management" do
 
   describe "user" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:template) { FactoryGirl.create(:template) }
 
-    it "shouldn't be able to access users" do
+    it "should be able to read templates" do
+      template
       login_as user
       visit templates_path
+      page.should have_content(template.name)
+    end
+
+    it "shouldn't be able to write templates" do
+      template
+      login_as user
+      visit templates_path
+      page.should_not have_selector "a[href='#{edit_template_path(template)}']", text: "Edit"
+      page.should_not have_selector "a[href='#{template_path(template)}'][data-method='delete']", text: "Destroy"
+      visit edit_template_path(template)
       page.status_code.should be == 403
     end
 
     after(:each) do
       user.destroy
+      template.destroy
     end
 
   end

@@ -5,6 +5,7 @@ authorization do
 
     role :user do
       includes :guest
+      has_permission_on :templates, to: [:read]
     end
 
     role :admin do

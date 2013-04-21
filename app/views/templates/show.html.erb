@@ -10,6 +10,7 @@
   <%= @template.description %>
 </p>
 
-
-<%= link_to 'Edit', edit_template_path(@template) %> |
+<% permitted_to?(:update, @template, context: :templates) do %>
+  <%= link_to 'Edit', edit_template_path(@template) %> |
+<% end %>
 <%= link_to 'Back', templates_path %>
